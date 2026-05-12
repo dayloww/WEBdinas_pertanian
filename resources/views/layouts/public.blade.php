@@ -104,11 +104,11 @@
         <div x-show="open" x-transition class="lg:hidden bg-white border-t border-slate-100">
             <div class="px-4 py-6 space-y-4">
                 <a href="{{ route('home') }}" class="block font-semibold">Beranda</a>
-                <a href="#" class="block font-semibold">Profil</a>
-                <a href="#" class="block font-semibold">Program</a>
-                <a href="#" class="block font-semibold">Berita</a>
-                <a href="#" class="block font-semibold">Galeri</a>
-                <a href="#" class="block font-semibold">Kontak</a>
+                <a href="{{ route('profile') }}" class="block font-semibold">Profil</a>
+                <a href="{{ route('programs') }}" class="block font-semibold">Program</a>
+                <a href="{{ route('news') }}" class="block font-semibold">Berita</a>
+                <a href="{{ route('gallery') }}" class="block font-semibold">Galeri</a>
+                <a href="{{ route('contact') }}" class="block font-semibold">Kontak</a>
             </div>
         </div>
     </header>
@@ -141,10 +141,10 @@
                 <div>
                     <h3 class="text-lg font-bold mb-6">Tautan Cepat</h3>
                     <ul class="space-y-4 text-green-100/70 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Visi & Misi</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Program Utama</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Laporan Tahunan</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Berita Terkini</a></li>
+                        <li><a href="{{ route('vision') }}" class="hover:text-white transition-colors">Visi & Misi</a></li>
+                        <li><a href="{{ route('programs') }}" class="hover:text-white transition-colors">Program Utama</a></li>
+                        <li><a href="{{ route('documents') }}" class="hover:text-white transition-colors">PPID Dokumen</a></li>
+                        <li><a href="{{ route('news') }}" class="hover:text-white transition-colors">Berita Terkini</a></li>
                     </ul>
                 </div>
                 <div>
