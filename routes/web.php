@@ -22,6 +22,9 @@ Route::get('/berita/{slug}', [HomeController::class, 'newsDetail'])->name('news.
 Route::get('/program', [HomeController::class, 'programs'])->name('programs');
 Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/dokumen', [HomeController::class, 'documents'])->name('documents');
+Route::get('/profil', [HomeController::class, 'profile'])->name('profile');
+Route::get('/visi-misi', [HomeController::class, 'vision'])->name('vision');
+Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {

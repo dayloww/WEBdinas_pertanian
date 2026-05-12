@@ -73,4 +73,22 @@ class HomeController extends Controller
         $documents = Document::latest()->get();
         return view('public.documents.index', compact('documents'));
     }
+
+    public function profile()
+    {
+        return view('public.profile');
+    }
+
+    public function vision()
+    {
+        $vision = \App\Models\Setting::where('key', 'vision')->first()->value ?? '';
+        $mission = \App\Models\Setting::where('key', 'mission')->first()->value ?? '';
+        return view('public.vision', compact('vision', 'mission'));
+    }
+
+    public function contact()
+    {
+        $settings = \App\Models\Setting::all()->pluck('value', 'key');
+        return view('public.contact', compact('settings'));
+    }
 }
