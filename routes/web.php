@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/berita', [HomeController::class, 'news'])->name('news');
+Route::get('/berita/{slug}', [HomeController::class, 'newsDetail'])->name('news.show');
+Route::get('/program', [HomeController::class, 'programs'])->name('programs');
+Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/dokumen', [HomeController::class, 'documents'])->name('documents');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {

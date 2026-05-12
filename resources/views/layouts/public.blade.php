@@ -74,7 +74,7 @@
 
                 <!-- Desktop Nav -->
                 <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-sm font-semibold hover:text-green-600 transition-colors">Beranda</a>
+                    <a href="{{ route('home') }}" class="text-sm font-semibold {{ request()->routeIs('home') ? 'text-green-600' : '' }} hover:text-green-600 transition-colors">Beranda</a>
                     <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <button class="flex items-center text-sm font-semibold hover:text-green-600 transition-colors">
                             Profil <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -85,10 +85,10 @@
                             <a href="#" class="block px-4 py-2 text-sm hover:bg-green-50 hover:text-green-700">Tugas & Fungsi</a>
                         </div>
                     </div>
-                    <a href="#" class="text-sm font-semibold hover:text-green-600 transition-colors">Program</a>
-                    <a href="#" class="text-sm font-semibold hover:text-green-600 transition-colors">Berita</a>
-                    <a href="#" class="text-sm font-semibold hover:text-green-600 transition-colors">Galeri</a>
-                    <a href="#" class="text-sm font-semibold hover:text-green-600 transition-colors">Kontak</a>
+                    <a href="{{ route('programs') }}" class="text-sm font-semibold {{ request()->routeIs('programs') ? 'text-green-600' : '' }} hover:text-green-600 transition-colors">Program</a>
+                    <a href="{{ route('news') }}" class="text-sm font-semibold {{ request()->routeIs('news*') ? 'text-green-600' : '' }} hover:text-green-600 transition-colors">Berita</a>
+                    <a href="{{ route('gallery') }}" class="text-sm font-semibold {{ request()->routeIs('gallery') ? 'text-green-600' : '' }} hover:text-green-600 transition-colors">Galeri</a>
+                    <a href="{{ route('documents') }}" class="text-sm font-semibold {{ request()->routeIs('documents') ? 'text-green-600' : '' }} hover:text-green-600 transition-colors">Dokumen</a>
                     <a href="#" class="bg-green-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-green-800 transition-all shadow-lg shadow-green-900/20 active:scale-95">PPID</a>
                 </nav>
 
