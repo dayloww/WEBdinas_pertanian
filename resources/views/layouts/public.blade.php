@@ -63,9 +63,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex items-center group">
-                    <div class="bg-green-primary p-2.5 rounded-2xl group-hover:rotate-6 transition-transform shadow-lg shadow-green-900/20">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                    </div>
+                    <img src="{{ asset('logo-pemerintah.png') }}" class="w-12 h-12 object-contain group-hover:rotate-6 transition-transform drop-shadow-xl" alt="Logo Sangihe">
                     <div class="ml-4">
                         <h1 class="text-xl font-bold leading-none uppercase tracking-tight transition-colors" :class="scrolled ? 'text-green-950' : 'text-white lg:group-hover:text-green-400'">Dinas Pertanian</h1>
                         <p class="text-[10px] font-bold uppercase tracking-[0.3em] mt-1" :class="scrolled ? 'text-slate-400' : 'text-green-100/60'">Kab. Kepulauan Sangihe</p>
@@ -114,9 +112,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-24">
                 <div class="lg:col-span-1">
                     <div class="flex items-center mb-8">
-                        <div class="bg-white p-2.5 rounded-2xl">
-                            <svg class="w-8 h-8 text-green-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                        </div>
+                        <img src="{{ asset('logo-pemerintah.png') }}" class="w-14 h-14 object-contain" alt="Logo Sangihe">
                         <div class="ml-4">
                             <h2 class="text-xl font-bold uppercase tracking-tight">Dinas Pertanian</h2>
                             <p class="text-[10px] text-green-400 font-bold uppercase tracking-[0.2em]">Sangihe Kepulauan</p>

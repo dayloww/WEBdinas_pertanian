@@ -31,9 +31,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
@@ -42,6 +40,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('programs', \App\Http\Controllers\Admin\ProgramController::class);
     Route::resource('announcements', \App\Http\Controllers\Admin\AnnouncementController::class);
     Route::resource('banners', \App\Http\Controllers\Admin\BannerController::class);
+    Route::resource('sectors', \App\Http\Controllers\Admin\SectorController::class);
+    Route::resource('sector-data', \App\Http\Controllers\Admin\SectorDataController::class);
     
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');

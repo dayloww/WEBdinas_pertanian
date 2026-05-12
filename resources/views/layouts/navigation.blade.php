@@ -2,9 +2,7 @@
     <!-- Brand -->
     <div class="h-20 flex items-center px-8 border-b border-white/5">
         <div class="flex items-center">
-            <div class="bg-green-500 p-2 rounded-xl shadow-lg shadow-green-500/20">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-            </div>
+            <img src="{{ asset('logo-pemerintah.png') }}" class="w-10 h-10 object-contain drop-shadow-xl" alt="Logo Sangihe">
             <div class="ml-3">
                 <h1 class="text-white font-bold text-lg tracking-tight">DINAS <span class="text-green-500">PERTANIAN</span></h1>
                 <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-none">Sangihe Dashboard</p>
@@ -44,6 +42,16 @@
 
         <x-admin-nav-link :href="route('admin.announcements.index')" :active="request()->routeIs('admin.announcements.*')" icon="announcement">
             Pengumuman
+        </x-admin-nav-link>
+
+        <p class="px-4 text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mt-8 mb-4">Statistik & Bidang</p>
+
+        <x-admin-nav-link :href="route('admin.sectors.index')" :active="request()->routeIs('admin.sectors.*')" icon="program">
+            Bidang Kerja
+        </x-admin-nav-link>
+
+        <x-admin-nav-link :href="route('admin.sector-data.index')" :active="request()->routeIs('admin.sector-data.*')" icon="dashboard">
+            Data Statistik
         </x-admin-nav-link>
 
         <p class="px-4 text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mt-8 mb-4">Sistem</p>
