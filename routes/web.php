@@ -26,6 +26,10 @@ Route::get('/profil', [HomeController::class, 'profile'])->name('profile');
 Route::get('/visi-misi', [HomeController::class, 'vision'])->name('vision');
 Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 
+Route::get('/dashboard', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
