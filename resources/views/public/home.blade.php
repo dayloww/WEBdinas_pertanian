@@ -14,11 +14,9 @@
     <!-- Content Area -->
     <div class="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
         <div class="reveal-zoom">
-            <div class="flex justify-center mb-10">
-                <span class="inline-flex items-center px-4 py-1.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full">
-                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse mr-3"></span>
-                    <span class="text-[10px] font-bold text-white/60 uppercase tracking-[0.5em]">Official Government Portal</span>
-                </span>
+            <div class="flex flex-col items-center mb-10">
+                <p class="text-green-500 font-bold uppercase tracking-[0.4em] text-[10px] italic mb-4">Selamat Datang di Portal Resmi</p>
+                <div class="w-12 h-[1px] bg-white/20"></div>
             </div>
             
             <h1 class="text-6xl md:text-[6.5rem] font-bold text-white mb-8 leading-[0.95] uppercase tracking-tighter">
