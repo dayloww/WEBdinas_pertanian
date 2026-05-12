@@ -49,25 +49,71 @@
     </div>
 </section>
 
-<!-- Modern Stats Grid -->
-<section class="py-32 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-24">
-            <div class="reveal border-l border-slate-200 pl-8">
-                <p class="text-4xl font-bold text-slate-900 mb-2">15k+</p>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-loose">Hektar Lahan</p>
+<!-- Modern Stats Section (Upgraded) -->
+<section class="py-32 relative bg-white overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-100/50 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-[120px] pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Stat 1 -->
+            <div class="reveal group bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:border-green-200 transition-all duration-500 hover:shadow-2xl hover:shadow-green-900/5 hover:-translate-y-2">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-green-500 group-hover:text-white transition-all duration-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-5xl font-bold text-slate-950 tracking-tighter">15k+</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Hektar Lahan</p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-100 flex items-center text-[10px] font-bold text-green-600 uppercase tracking-widest">
+                    <span>Lihat Peta Lahan</span>
+                    <svg class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
             </div>
-            <div class="reveal border-l border-slate-200 pl-8" style="transition-delay: 100ms;">
-                <p class="text-4xl font-bold text-slate-900 mb-2">157</p>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-loose">Kelompok Tani</p>
+
+            <!-- Stat 2 -->
+            <div class="reveal group bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:border-blue-200 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/5 hover:-translate-y-2" style="transition-delay: 100ms;">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-5xl font-bold text-slate-950 tracking-tighter">157</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Kelompok Tani</p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-100 flex items-center text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+                    <span>Data Kelompok</span>
+                    <svg class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
             </div>
-            <div class="reveal border-l border-slate-200 pl-8" style="transition-delay: 200ms;">
-                <p class="text-4xl font-bold text-slate-900 mb-2">45</p>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-loose">Program Aktif</p>
+
+            <!-- Stat 3 -->
+            <div class="reveal group bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:border-purple-200 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-900/5 hover:-translate-y-2" style="transition-delay: 200ms;">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-purple-500 group-hover:text-white transition-all duration-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-5xl font-bold text-slate-950 tracking-tighter">45</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Program Aktif</p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-100 flex items-center text-[10px] font-bold text-purple-600 uppercase tracking-widest">
+                    <span>Detail Program</span>
+                    <svg class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
             </div>
-            <div class="reveal border-l border-slate-200 pl-8" style="transition-delay: 300ms;">
-                <p class="text-4xl font-bold text-slate-900 mb-2">12</p>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-loose">Komoditas</p>
+
+            <!-- Stat 4 -->
+            <div class="reveal group bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:border-orange-200 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-900/5 hover:-translate-y-2" style="transition-delay: 300ms;">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-5xl font-bold text-slate-950 tracking-tighter">12</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Komoditas</p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-100 flex items-center text-[10px] font-bold text-orange-600 uppercase tracking-widest">
+                    <span>Info Komoditas</span>
+                    <svg class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
             </div>
         </div>
     </div>
