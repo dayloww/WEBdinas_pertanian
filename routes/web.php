@@ -42,6 +42,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('banners', \App\Http\Controllers\Admin\BannerController::class);
     Route::resource('sectors', \App\Http\Controllers\Admin\SectorController::class);
     Route::resource('sector-data', \App\Http\Controllers\Admin\SectorDataController::class);
+    Route::resource('lands', \App\Http\Controllers\Admin\LandController::class);
+    Route::resource('infographics', \App\Http\Controllers\Admin\InfographicController::class);
     
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');

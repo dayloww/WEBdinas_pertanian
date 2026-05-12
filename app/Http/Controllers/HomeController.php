@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Program;
 use App\Models\Gallery;
 use App\Models\Document;
+use App\Models\Sector;
 
 class HomeController extends Controller
 {
@@ -17,8 +18,11 @@ class HomeController extends Controller
         $banners = Banner::orderBy('order')->get();
         $news = Post::with('category')->where('status', 'published')->latest()->take(3)->get();
         $programs = Program::latest()->take(2)->get();
+        $sectors = Sector::with(['data' => function($q) {
+            $q->orderBy('year', 'desc')->take(1);
+        }])->get();
         
-        return view('public.home', compact('banners', 'news', 'programs'));
+        return view('public.home', compact('banners', 'news', 'programs', 'sectors'));
     }
 
     public function news(Request $request)

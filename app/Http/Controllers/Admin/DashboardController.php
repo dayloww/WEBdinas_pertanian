@@ -3,61 +3,61 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Sector;
 use App\Models\SectorData;
 use App\Models\Post;
-use App\Models\Program;
-use App\Models\Gallery;
+use App\Models\Land;
+use App\Models\District;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $sectors = Sector::with(['data' => function($query) {
-            $query->orderBy('year', 'asc')->orderBy('month', 'asc');
-        }])->get();
+        $currentYear = date('Y');
 
-        $stats = [
-            'posts' => Post::count(),
-            'programs' => Program::count(),
-            'galleries' => Gallery::count(),
-            'sectors' => Sector::count(),
-        ];
-
-        // Calculate trends
-        $trends = [];
-        $allData = SectorData::with('sector')->get()->groupBy('label');
-
-        foreach ($allData as $label => $items) {
-            $sortedItems = $items->sortByDesc('year')->values();
-            if ($sortedItems->count() >= 2) {
-                $current = $sortedItems[0];
-                $previous = $sortedItems[1];
-                $diff = $current->value - $previous->value;
-                $percent = $previous->value > 0 ? ($diff / $previous->value) * 100 : 0;
-                
-                $trends[] = [
-                    'label' => $label,
-                    'sector' => $current->sector->name,
-                    'current_value' => $current->value,
-                    'previous_value' => $previous->value,
-                    'diff' => $diff,
-                    'percent' => $percent,
-                    'unit' => $current->unit,
-                    'status' => $diff >= 0 ? 'up' : 'down'
-                ];
-            }
-        }
-
-        // Comparison Data for Bar Chart (Latest year)
-        $latestYear = SectorData::max('year');
-        $comparisonData = SectorData::where('year', $latestYear)
-            ->get()
+        // Stat Cards
+        $totalLahan = Land::count();
+        $totalProduksi = SectorData::where('year', $currentYear)->sum('value');
+        
+        $unggulan = SectorData::select('sector_id', DB::raw('SUM(value) as total'))
             ->groupBy('sector_id')
-            ->map(function($items) {
-                return $items->sum('value');
-            });
+            ->orderBy('total', 'desc')
+            ->first();
+        $komoditasUnggulan = $unggulan ? Sector::find($unggulan->sector_id)->name : '-';
+        
+        $totalBerita = Post::where('status', 'published')->count();
 
-        return view('dashboard', compact('sectors', 'stats', 'trends', 'latestYear', 'comparisonData'));
+        // Trend Produksi 5 Tahun
+        $trendData = SectorData::select('year', DB::raw('SUM(value) as total'))
+            ->groupBy('year')
+            ->orderBy('year', 'asc')
+            ->take(5)
+            ->get();
+
+        // Komposisi Produksi per Komoditas (Donut)
+        $komposisi = SectorData::with('sector')
+            ->select('sector_id', DB::raw('SUM(value) as total'))
+            ->where('year', $currentYear)
+            ->groupBy('sector_id')
+            ->get();
+
+        // Sebaran Lahan per Kecamatan (Bar)
+        $sebaranLahan = Land::with('district')
+            ->select('district_id', DB::raw('SUM(area) as total_area'))
+            ->groupBy('district_id')
+            ->get();
+
+        // Latest News
+        $latestNews = Post::latest()->take(5)->get();
+
+        // Map Data
+        $lands = Land::with(['district', 'sector'])->get();
+
+        return view('dashboard', compact(
+            'totalLahan', 'totalProduksi', 'komoditasUnggulan', 'totalBerita',
+            'trendData', 'komposisi', 'sebaranLahan', 'latestNews', 'lands'
+        ));
     }
 }
