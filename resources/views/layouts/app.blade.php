@@ -72,8 +72,107 @@
                 </header>
 
                 <!-- Page Content -->
-                <main class="p-10">
-                    {{ $slot }}
+                <main class="p-6 md:p-8 xl:p-10 bg-[#eef3ef]">
+                    @php
+                        $adminQuickLinks = [
+                            [
+                                'label' => 'Data Statistik',
+                                'description' => 'Input unggas, ternak, dan daging',
+                                'index' => Route::has('admin.sector-data.index') ? route('admin.sector-data.index') : null,
+                                'create' => Route::has('admin.sector-data.create') ? route('admin.sector-data.create') : null,
+                                'active' => request()->routeIs('admin.sector-data.*'),
+                            ],
+                            [
+                                'label' => 'Data Lahan',
+                                'description' => 'Kelola lahan untuk peta admin',
+                                'index' => Route::has('admin.lands.index') ? route('admin.lands.index') : null,
+                                'create' => Route::has('admin.lands.create') ? route('admin.lands.create') : null,
+                                'active' => request()->routeIs('admin.lands.*'),
+                            ],
+                            [
+                                'label' => 'Infografis',
+                                'description' => 'Tambah materi visual publikasi',
+                                'index' => Route::has('admin.infographics.index') ? route('admin.infographics.index') : null,
+                                'create' => Route::has('admin.infographics.create') ? route('admin.infographics.create') : null,
+                                'active' => request()->routeIs('admin.infographics.*'),
+                            ],
+                            [
+                                'label' => 'Berita',
+                                'description' => 'Tulis dan publish berita terbaru',
+                                'index' => Route::has('admin.posts.index') ? route('admin.posts.index') : null,
+                                'create' => Route::has('admin.posts.create') ? route('admin.posts.create') : null,
+                                'active' => request()->routeIs('admin.posts.*'),
+                            ],
+                            [
+                                'label' => 'Galeri',
+                                'description' => 'Kelola foto kegiatan dinas',
+                                'index' => Route::has('admin.galleries.index') ? route('admin.galleries.index') : null,
+                                'create' => Route::has('admin.galleries.create') ? route('admin.galleries.create') : null,
+                                'active' => request()->routeIs('admin.galleries.*'),
+                            ],
+                            [
+                                'label' => 'Bidang',
+                                'description' => 'Atur kategori sektor data',
+                                'index' => Route::has('admin.sectors.index') ? route('admin.sectors.index') : null,
+                                'create' => Route::has('admin.sectors.create') ? route('admin.sectors.create') : null,
+                                'active' => request()->routeIs('admin.sectors.*'),
+                            ],
+                        ];
+                    @endphp
+
+                    <div class="space-y-8">
+                        @isset($header)
+                            <section class="rounded-[2rem] border border-white bg-white px-6 py-6 shadow-xl shadow-slate-900/5 md:px-8">
+                                {{ $header }}
+                            </section>
+                        @endisset
+
+                        <section class="rounded-[2rem] border border-white bg-white p-6 shadow-xl shadow-slate-900/5">
+                            <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                                <div>
+                                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Aksi Cepat Admin</p>
+                                    <h2 class="mt-2 text-2xl font-black text-slate-900">Tambah dan lihat data lebih cepat</h2>
+                                    <p class="mt-2 max-w-2xl text-sm text-slate-500">
+                                        Semua halaman admin sekarang punya jalur yang sama untuk membuka daftar data dan menambahkan data baru tanpa kembali ke dashboard.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                                @foreach ($adminQuickLinks as $link)
+                                    @if ($link['index'] || $link['create'])
+                                        <div class="rounded-[1.75rem] border {{ $link['active'] ? 'border-green-200 bg-green-50/70' : 'border-slate-100 bg-slate-50/80' }} p-5 transition-all">
+                                            <div class="flex items-start justify-between gap-4">
+                                                <div>
+                                                    <h3 class="text-base font-black text-slate-900">{{ $link['label'] }}</h3>
+                                                    <p class="mt-2 text-sm text-slate-500">{{ $link['description'] }}</p>
+                                                </div>
+                                                @if ($link['active'])
+                                                    <span class="rounded-full border border-green-200 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-green-700">
+                                                        Aktif
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="mt-5 flex flex-wrap gap-3">
+                                                @if ($link['index'])
+                                                    <a href="{{ $link['index'] }}" class="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-100">
+                                                        Lihat Data
+                                                    </a>
+                                                @endif
+                                                @if ($link['create'])
+                                                    <a href="{{ $link['create'] }}" class="rounded-2xl bg-[#1a332a] px-4 py-2 text-xs font-black uppercase tracking-widest text-white transition-all hover:bg-[#244638]">
+                                                        Tambah Data
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </section>
+
+                        {{ $slot }}
+                    </div>
                 </main>
             </div>
         </div>

@@ -141,26 +141,25 @@
 <section class="py-40 bg-slate-50 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Produksi Padi</p>
-                <h5 class="text-5xl font-bold text-slate-900 tracking-tighter">4.2k</h5>
-                <p class="text-xs text-green-600 font-bold mt-4 uppercase tracking-widest">+8% Tahun Ini</p>
-            </div>
-            <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white" style="transition-delay: 100ms;">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Populasi Sapi</p>
-                <h5 class="text-5xl font-bold text-slate-900 tracking-tighter">1.8k</h5>
-                <p class="text-xs text-blue-600 font-bold mt-4 uppercase tracking-widest">Kondisi Sehat</p>
-            </div>
-            <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white" style="transition-delay: 200ms;">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Lahan Cengkeh</p>
-                <h5 class="text-5xl font-bold text-slate-900 tracking-tighter">8.5k</h5>
-                <p class="text-xs text-orange-600 font-bold mt-4 uppercase tracking-widest">Hektar Luas</p>
-            </div>
-            <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white" style="transition-delay: 300ms;">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Kelompok Tani</p>
-                <h5 class="text-5xl font-bold text-slate-900 tracking-tighter">157</h5>
-                <p class="text-xs text-purple-600 font-bold mt-4 uppercase tracking-widest">Tersertifikasi</p>
-            </div>
+            @forelse($frontStatistics as $index => $stat)
+                <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white" style="transition-delay: {{ $index * 100 }}ms;">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">
+                        {{ \App\Models\SectorData::datasetTypeOptions()[$stat->dataset_type] ?? optional($stat->sector)->name }}
+                    </p>
+                    <h5 class="text-5xl font-bold text-slate-900 tracking-tighter">{{ number_format($stat->value, 0, ',', '.') }}</h5>
+                    <p class="text-xs text-green-600 font-bold mt-4 uppercase tracking-widest">
+                        {{ $stat->animal_name }} · {{ $stat->unit }} · {{ $stat->year }}
+                    </p>
+                    @if($stat->district_name)
+                        <p class="text-[11px] text-slate-500 mt-4">{{ $stat->district_name }}</p>
+                    @endif
+                </div>
+            @empty
+                <div class="reveal p-12 bg-white rounded-[3.5rem] shadow-2xl shadow-slate-900/5 border border-white md:col-span-2 lg:col-span-4">
+                    <p class="text-sm font-bold text-slate-900">Belum ada data yang ditandai untuk tampil di front.</p>
+                    <p class="text-sm text-slate-500 mt-2">Admin bisa mengaktifkannya dari menu `Data Statistik` pada panel admin.</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>

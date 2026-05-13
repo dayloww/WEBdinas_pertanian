@@ -30,7 +30,11 @@ Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 });
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
+
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);

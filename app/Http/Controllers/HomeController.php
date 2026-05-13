@@ -10,6 +10,7 @@ use App\Models\Program;
 use App\Models\Gallery;
 use App\Models\Document;
 use App\Models\Sector;
+use App\Models\SectorData;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,14 @@ class HomeController extends Controller
         $sectors = Sector::with(['data' => function($q) {
             $q->orderBy('year', 'desc')->take(1);
         }])->get();
+        $frontStatistics = SectorData::with('sector')
+            ->where('show_on_front', true)
+            ->orderBy('front_order')
+            ->orderByDesc('year')
+            ->take(4)
+            ->get();
         
-        return view('public.home', compact('banners', 'news', 'programs', 'sectors'));
+        return view('public.home', compact('banners', 'news', 'programs', 'sectors', 'frontStatistics'));
     }
 
     public function news(Request $request)

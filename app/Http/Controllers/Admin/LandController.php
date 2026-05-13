@@ -3,63 +3,75 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\District;
+use App\Models\Land;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 
 class LandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $lands = Land::with(['district', 'sector'])->latest()->get();
+
+        return view('admin.lands.index', compact('lands'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $districts = District::orderBy('name')->get();
+        $sectors = Sector::orderBy('name')->get();
+
+        return view('admin.lands.create', compact('districts', 'sectors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'district_id' => 'required|exists:districts,id',
+            'sector_id' => 'required|exists:sectors,id',
+            'area' => 'required|numeric|min:0',
+            'lat' => 'nullable|numeric',
+            'lng' => 'nullable|numeric',
+        ]);
+
+        Land::create($validated);
+
+        return redirect()->route('admin.lands.index')->with('success', 'Data lahan berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Land $land)
     {
-        //
+        return redirect()->route('admin.lands.edit', $land);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Land $land)
     {
-        //
+        $districts = District::orderBy('name')->get();
+        $sectors = Sector::orderBy('name')->get();
+
+        return view('admin.lands.edit', compact('land', 'districts', 'sectors'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Land $land)
     {
-        //
+        $validated = $request->validate([
+            'district_id' => 'required|exists:districts,id',
+            'sector_id' => 'required|exists:sectors,id',
+            'area' => 'required|numeric|min:0',
+            'lat' => 'nullable|numeric',
+            'lng' => 'nullable|numeric',
+        ]);
+
+        $land->update($validated);
+
+        return redirect()->route('admin.lands.index')->with('success', 'Data lahan berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Land $land)
     {
-        //
+        $land->delete();
+
+        return redirect()->route('admin.lands.index')->with('success', 'Data lahan berhasil dihapus.');
     }
 }

@@ -3,63 +3,63 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Infographic;
 use Illuminate\Http\Request;
 
 class InfographicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $infographics = Infographic::latest()->get();
+
+        return view('admin.infographics.index', compact('infographics'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.infographics.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'required|url|max:2048',
+            'description' => 'nullable|string',
+        ]);
+
+        Infographic::create($validated);
+
+        return redirect()->route('admin.infographics.index')->with('success', 'Infografis berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Infographic $infographic)
     {
-        //
+        return redirect()->route('admin.infographics.edit', $infographic);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Infographic $infographic)
     {
-        //
+        return view('admin.infographics.edit', compact('infographic'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Infographic $infographic)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'required|url|max:2048',
+            'description' => 'nullable|string',
+        ]);
+
+        $infographic->update($validated);
+
+        return redirect()->route('admin.infographics.index')->with('success', 'Infografis berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Infographic $infographic)
     {
-        //
+        $infographic->delete();
+
+        return redirect()->route('admin.infographics.index')->with('success', 'Infografis berhasil dihapus.');
     }
 }
